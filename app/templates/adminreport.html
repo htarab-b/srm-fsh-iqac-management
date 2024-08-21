@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 210mm;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        .header, .content, .footer {
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .header img {
+            width: 150px;
+            position: absolute;
+        }
+        .header div {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .content table {
+            width: 100%;
+        }
+        .content table, .content th, .content td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        .footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer div {
+            width: 50%;
+            border: 1px solid black;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .approve-button {
+            display: block;
+            margin: 20px auto;
+            margin-top: 40px;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        .approve-button:hover {
+            background-color: #218838;
+        }
+    </style>
+    {% if messages %}
+        {% for message in messages %}
+            <script>window.alert("{{ message }}")</script>
+        {% endfor %}
+    {% endif %}
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input class="approve-button" type="submit" value="Approve">
+    </form>
+    <div class="container">
+        <div class="header">
+            {% load static %}
+            <img src="{% static '/SRM logo.png' %}" alt="My image">
+            <div>COLLEGE OF SCIENCE AND HUMANITIES<br>SRM INSTITUTE OF SCIENCE AND TECHNOLOGY<br>FORM-1</div>
+        </div>
+        <div class="content">
+            <table>
+                <tr>
+                    <td colspan="2"><b>Form ID:</b> {{ details.id }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>Mobile No:</b> {{ details.Phone }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>E-Mail:</b> {{ details.Email }}</td>
+                </tr>
+                <tr>
+                    <td><b>From:</b><br>{{ details.Name }}<br>{{ details.RegID }}<br>{{ details.Department }}</td>
+                    <td><b>To:</b><br>The DEAN, CS&H<br>SRMIST</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>Date:</b>{{ details.Date }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>Subject:</b>{{ details.Subject }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="height: 300px;">{{ details.Purpose }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            <div>
+                <strong>Coordinator - IQAC-FSH:</strong><br><br>
+                {% if details.Coordinator_Approval == 'YES' %}<strong style="color: #28a745;">Approved</strong>{% endif %}
+            </div>
+            <div>
+                <strong>Deputy Dean:</strong><br><br>
+                {% if details.Dean_Approval == 'YES' %}<strong style="color: #28a745;">Approved</strong>{% endif %}
+            </div>
+            <div>
+                <strong>Dean:</strong><br><br>
+                {% if details.DeputyDean_Approval == 'YES' %}<strong style="color: #28a745;">Approved</strong>{% endif %}
+            </div>
+            <div>
+                <strong>Pro Vice Chancellor:</strong><br><br>
+                {% if details.ProVC_Approval == 'YES' %}<strong style="color: #28a745;">Approved</strong>{% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 210mm;
+            margin: 0 auto;
+            padding: 10mm;
+            box-sizing: border-box;
+        }
+        .header, .content, .footer {
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .header img {
+            width: 120px;
+            position: absolute;
+        }
+        .header div {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .content table {
+            width: 100%;
+        }
+        .content table, .content th, .content td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        .footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer div {
+            width: 50%;
+            border: 1px solid black;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .print-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        @media print {
+            @page {
+                margin: 0;
+                size: A4;
+            }
+            body {
+                margin: 0;
+            }
+            .container {
+                width: 100%;
+                margin: 0;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            .print-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            {% load static %}
+            <img src="{% static '/SRM logo.png' %}" alt="My image">
+            <div>COLLEGE OF SCIENCE AND HUMANITIES<br>SRM INSTITUTE OF SCIENCE AND TECHNOLOGY<br>FORM-1</div>
+        </div>
+        <div class="content">
+            <table>
+                <tr>
+                    <td colspan="2"><b>Form ID:</b> {{ details.id }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>Mobile No:</b> {{ details.Phone }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>E-Mail:</b> {{ details.Email }}</td>
+                </tr>
+                <tr>
+                    <td><b>From:</b><br>{{ details.Name }}<br>{{ details.RegID }}<br>{{ details.Department }}</td>
+                    <td><b>To:</b><br>The DEAN, CS&H<br>SRMIST</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>Date:</b>{{ details.Date }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>Subject:</b>{{ details.Subject }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="height: 300px;">{{ details.Purpose }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            <div>
+                <strong>Remarks / Recommendation</strong><br><br><br><br><br><br>
+                Coordinator - IQAC-FSH
+            </div>
+            <div>
+                <strong>Remarks / Recommendation</strong><br><br><br><br><br><br>
+                Deputy Dean
+            </div>
+            <div>
+                <strong>Remarks / Recommendation</strong><br><br><br><br><br><br>
+                Dean
+            </div>
+            <div>
+                <strong>Remarks / Recommendation</strong><br><br><br><br><br><br>
+                Pro Vice Chancellor
+            </div>
+        </div>
+    </div>
+    <button class="print-button" onclick="window.print()">Print</button>
+</body>
+</html>
