@@ -2,7 +2,10 @@
   "builds": [
     {
       "src": "iqac/wsgi.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
     }
   ],
   "routes": [
@@ -11,7 +14,7 @@
       "dest": "/static/$1"
     },
     {
-      "src": "(.*)",
+      "src": "/(.*)",
       "dest": "iqac/wsgi.py"
     }
   ]
