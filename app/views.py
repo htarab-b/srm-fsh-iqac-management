@@ -39,7 +39,7 @@ class FormFillView(FormView):
         Subject = request.POST.get('Subject')
         Purpose = request.POST.get('Purpose')
         Type = request.POST.get('Type')
-        FormDetailsModel.objects.create(
+        flag = FormDetailsModel.objects.filter(
             Name = Name,
             RegID = ID,
             Department = Department,
@@ -49,6 +49,17 @@ class FormFillView(FormView):
             Purpose = Purpose,
             Type = Type
         )
+        if not flag.exists():
+            FormDetailsModel.objects.create(
+                Name = Name,
+                RegID = ID,
+                Department = Department,
+                Phone = Phone,
+                Email = Email,
+                Subject = Subject,
+                Purpose = Purpose,
+                Type = Type
+            )
         details = FormDetailsModel.objects.get(
             Name = Name,
             RegID = ID,
