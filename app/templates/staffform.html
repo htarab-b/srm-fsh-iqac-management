@@ -70,7 +70,7 @@
 <body>
     <div class="form-container">
         <h2>Submit Your Details</h2>
-        <form action="" method="POST">
+        <form action="" method="POST" onsubmit="handleSubmit()">
         {% csrf_token %}
             <div class="form-group">
                 <label for="Name">Name</label>
@@ -81,7 +81,7 @@
                 <input type="text" id="ID" name="ID" required>
             </div>
             <div class="form-group">
-                <label for="ID">Department</label>
+                <label for="Department">Department</label>
                 <input type="text" id="Department" name="Department" required>
             </div>
             <div class="form-group">
@@ -102,9 +102,17 @@
             </div>
             <div class="form-group">
                 <input type="hidden" name="Type" value="Staff">
-                <input type="submit"></input>
+                <input type="submit" id="submitBtn" value="Submit">
             </div>
         </form>
     </div>
+
+    <script>
+        function handleSubmit() {
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.value = 'Please Wait';
+        }
+    </script>
 </body>
 </html>
