@@ -1,12 +1,21 @@
 {
   "builds": [
     {
-      "src": "manage.py",
+      "src": "iqac/wsgi.py",
       "use": "@vercel/python",
-      "config": { "zeroConfig": true }
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
     }
   ],
-  "scripts": {
-    "build": "python manage.py collectstatic --noinput"
-  }
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "iqac/wsgi.py"
+    }
+  ]
 }
