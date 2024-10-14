@@ -85,6 +85,14 @@
         .back-button:hover {
             background-color: #218838;
         }
+        .purpose-sign {
+            height: 20%;
+            width: 100%;
+            display: flex;
+            justify-content: left;
+            align-items: end;
+            overflow: scroll;
+        }
     </style>
     {% if messages %}
         {% for message in messages %}
@@ -120,7 +128,7 @@
                     <td colspan="2"><b>Subject: </b>{{ details.Subject }}</td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="height: 300px;"><div style="height: 80%;">Respected {{ details.LetterTo }},<br><br>{{ details.Purpose }}</div></td>
+                    <td colspan="2" style="height: 300px;"><div style="height: 80%;">Respected {{ details.LetterTo }},<br><br>{{ details.Purpose }}</div><div class="purpose-sign"><b>Additional Documents:</b> <a href="{{ details.AdditionalDocuments }}" target="_blank">{{ details.AdditionalDocuments }}</a></div></td>
                 </tr>
             </table>
         </div>

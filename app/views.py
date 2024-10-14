@@ -42,6 +42,7 @@ class FormFillView(FormView):
         Purpose = request.POST.get('Purpose')
         EventDate_From = request.POST.get('EventDate_From')
         EventDate_To = request.POST.get('EventDate_To')
+        Documents = request.POST.get('Documents')
         Type = request.POST.get('Type')
         if Type == 'Student': Department += " - " + request.POST.get('Class')
         flag = FormDetailsModel.objects.filter(
@@ -56,6 +57,7 @@ class FormFillView(FormView):
             Purpose = Purpose,
             EventDate_From = EventDate_From,
             EventDate_To = EventDate_To,
+            AdditionalDocuments = Documents,
             Type = Type
         )
         if not flag.exists():
@@ -71,6 +73,7 @@ class FormFillView(FormView):
                 Purpose = Purpose,
                 EventDate_From = EventDate_From,
                 EventDate_To = EventDate_To,
+                AdditionalDocuments = Documents,
                 Type = Type
             )
         details = FormDetailsModel.objects.get(
@@ -85,6 +88,7 @@ class FormFillView(FormView):
             Purpose = Purpose,
             EventDate_From = EventDate_From,
             EventDate_To = EventDate_To,
+            AdditionalDocuments = Documents,
             Type = Type
         )
         return render(request, 'report.html', {'details': details})
