@@ -36,17 +36,26 @@ class FormFillView(FormView):
         Department = request.POST.get('Department')
         Phone = request.POST.get('Phone')
         Email = request.POST.get('Email')
+        FormTo = request.POST.get('FormTo')
+        FormThrough = request.POST.get('FormThrough')
         Subject = request.POST.get('Subject')
         Purpose = request.POST.get('Purpose')
+        EventDate_From = request.POST.get('EventDate_From')
+        EventDate_To = request.POST.get('EventDate_To')
         Type = request.POST.get('Type')
+        if Type == 'Student': Department += " - " + request.POST.get('Class')
         flag = FormDetailsModel.objects.filter(
             Name = Name,
             RegID = ID,
             Department = Department,
             Phone = Phone,
             Email = Email,
+            LetterTo = FormTo,
+            LetterThrough = FormThrough,
             Subject = Subject,
             Purpose = Purpose,
+            EventDate_From = EventDate_From,
+            EventDate_To = EventDate_To,
             Type = Type
         )
         if not flag.exists():
@@ -56,8 +65,12 @@ class FormFillView(FormView):
                 Department = Department,
                 Phone = Phone,
                 Email = Email,
+                LetterTo = FormTo,
+                LetterThrough = FormThrough,
                 Subject = Subject,
                 Purpose = Purpose,
+                EventDate_From = EventDate_From,
+                EventDate_To = EventDate_To,
                 Type = Type
             )
         details = FormDetailsModel.objects.get(
@@ -66,8 +79,12 @@ class FormFillView(FormView):
             Department = Department,
             Phone = Phone,
             Email = Email,
+            LetterTo = FormTo,
+            LetterThrough = FormThrough,
             Subject = Subject,
             Purpose = Purpose,
+            EventDate_From = EventDate_From,
+            EventDate_To = EventDate_To,
             Type = Type
         )
         return render(request, 'report.html', {'details': details})
@@ -83,7 +100,8 @@ class AdminView(LoginRequiredMixin, ListView):
             else: messages.success(request, 'Invalid Form ID')
             return render(request, 'adminreport.html', {'details': details})
         else:
-            return render(request, 'admin.html')
+            forms = FormDetailsModel.objects.all().order_by('-id')
+            return render(request, 'admin.html', {'forms': forms})
     def post(self, request):
         user = request.user.username
         formDetails = FormDetailsModel.objects.get(

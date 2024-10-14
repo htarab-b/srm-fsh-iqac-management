@@ -11,7 +11,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             margin: 0;
         }
         .form-container {
@@ -35,6 +34,7 @@
             font-weight: bold;
         }
         .form-group input,
+        .form-group select,
         .form-group textarea {
             font-family: Arial, sans-serif;
             width: 100%;
@@ -82,23 +82,93 @@
             </div>
             <div class="form-group">
                 <label for="Department">Department</label>
-                <input type="text" id="Department" name="Department" required>
+                <select name="Department" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="English">English</option>
+                    <option value="Journalism and Mass Communication">Journalism and Mass Communication</option>
+                    <option value="Computer Applications">Computer Applications</option>
+                    <option value="Data Science">Data Science</option>
+                    <option value="Accounting & Finance">Accounting & Finance</option>
+                    <option value="Commerce">Commerce</option>
+                    <option value="Corporate Secretaryship">Corporate Secretaryship</option>
+                    <option value="Finance and Taxation">Finance and Taxation</option>
+                    <option value="Information System and Management">Information System and Management</option>
+                    <option value="Professional Accounting">Professional Accounting</option>
+                    <option value="Banking, Financial Services, and Insurance">Banking, Financial Services, and Insurance</option>
+                    <option value="International Accounting & Finance">International Accounting & Finance</option>
+                    <option value="Biological Science">Biological Science</option>
+                    <option value="Commerce & Accounting">Commerce & Accounting</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Economics">Economics</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Physical Science">Physical Science</option>
+                    <option value="Social Science">Social Science</option>
+                    <option value="Tamil">Tamil</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Hotel & Catering Management">Hotel & Catering Management</option>
+                    <option value="Biotechnology">Biotechnology</option>
+                    <option value="Computer Science Specialization in Cyber Security">Computer Science Specialization in Cyber Security</option>
+                    <option value="Defence and Strategic Studies">Defence and Strategic Studies</option>
+                    <option value="Fashion Designing">Fashion Designing</option>
+                    <option value="Physical Education, Health Education and Sports">Physical Education, Health Education and Sports</option>
+                    <option value="Psychology">Psychology</option>
+                    <option value="Statistics">Statistics</option>
+                    <option value="Visual Communication">Visual Communication</option>
+                    <option value="Basic French">Basic French</option>
+                    <option value="Certified Financial Management">Certified Financial Management</option>
+                    <option value="Counter-Terrorism">Counter-Terrorism</option>
+                    <option value="Financial Management">Financial Management</option>
+                    <option value="Fire Fighting and Fire Safety">Fire Fighting and Fire Safety</option>
+                    <option value="First Aid and Safety Management">First Aid and Safety Management</option>
+                    <option value="Hotel Management and Catering Science">Hotel Management and Catering Science</option>
+                    <option value="Yoga">Yoga</option>
+                    <option value="Applied Data Science">Applied Data Science</option>
+                    <option value="Organic Chemistry">Organic Chemistry</option>
+                    <option value="Disaster Management">Disaster Management</option>
+                    <option value="Master of Social Work">Master of Social Work</option>
+                    <option value="Culinary Arts">Culinary Arts</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="Phone">Phone Number</label>
                 <input type="text" id="Phone" name="Phone" required>
             </div>
             <div class="form-group">
-                <label for="Email">Email</label>
+                <label for="Email">SRM Email</label>
                 <input type="email" id="Email" name="Email" required>
+            </div>
+            <div class="form-group">
+                <label for="FormTo">Send Form To</label>
+                <select name="FormTo">
+                    <option value="Dean">Dean</option>
+                    <option value="Additional Registrar">Additional Registrar</option>
+                    <option value="Pro Vice Chancellor">Pro Vice Chancellor</option>
+                    <option value="Registrar">Registrar</option>
+                    <option value="Vice Chancellor">Vice Chancellor</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="FormThrough">Send Form Through</label>
+                <select name="FormThrough">
+                    <option value="Tutor">Tutor</option>
+                    <option value="Head of Department">Head of Department</option>
+                    <option value="Deputy Dean">Deputy Dean</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="Subject">Subject of Letter</label>
                 <input type="text" id="Subject" name="Subject" required>
             </div>
             <div class="form-group">
-                <label for="Purpose">Purpose</label>
+                <label for="Purpose">Description of Purpose</label>
                 <textarea id="Purpose" name="Purpose" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="Subject">Event Date</label>
+                <p>From:</p>
+                <input type="date" id="EventDate_From" name="EventDate_From" required>
+                <p>To:</p>
+                <input type="date" id="EventDate_To" name="EventDate_To" required>
             </div>
             <div class="form-group">
                 <input type="hidden" name="Type" value="Staff">
