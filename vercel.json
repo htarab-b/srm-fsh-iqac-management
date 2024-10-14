@@ -17,5 +17,8 @@
       "src": "/(.*)",
       "dest": "iqac/wsgi.py"
     }
-  ]
+  ],
+  "scripts": {
+    "build": "python manage.py collectstatic --noinput"
+  }
 }
