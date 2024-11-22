@@ -46,9 +46,12 @@
         }
         .footer div {
             width: 50%;
-            border: 1px solid black;
+            border-bottom: 1px solid black;
             padding: 10px;
             box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .print-button {
             display: block;
@@ -87,10 +90,11 @@
     </style>
 </head>
 <body>
+    {% load shorten %}
     <div class="container">
         <div class="header">
             <img src="{% static 'assets/SRM_logo.png' %}" alt="SRM">
-            <div>COLLEGE OF SCIENCE AND HUMANITIES<br>SRM INSTITUTE OF SCIENCE AND TECHNOLOGY<br>FORM-1</div>
+            <div>FACULTY OF SCIENCE AND HUMANITIES<br>SRM INSTITUTE OF SCIENCE AND TECHNOLOGY<br>FORM-1</div>
         </div>
         <div class="content">
             <table>
@@ -99,7 +103,7 @@
                 </tr>
                 <tr>
                     <td style="width: 50%;"><b>From:</b><br>{{ details.Name }}<br>{{ details.RegID }}<br>{{ details.Department }}<br>{{ details.Email }}<br>{{ details.Phone }}</td>
-                    <td style="width: 50%;"><b>To:</b><br>{{ details.LetterTo }}<br>SRMIST</td>
+                    <td style="width: 50%;"><b>To:</b><br>{{ details.LetterTo }}<br>SRMIST<br><br><b>Through:</b><br>{{ details.LetterThrough }}<br>SRMIST</td>
                 </tr>
                 <tr>
                     <td colspan="2"><b>Date: </b>{{ details.Date|date:"d-m-Y" }}</td>
@@ -114,20 +118,28 @@
         </div>
         <div class="footer">
             <div>
-                <strong>Remarks / Recommendation</strong><br><br><br><br>
+                <br><br><br><br>
                 Head of Department
             </div>
             <div>
-                <strong>Remarks / Recommendation</strong><br><br><br><br>
+                <br><br><br><br>
                 Deputy Dean
             </div>
             <div>
-                <strong>Remarks / Recommendation</strong><br><br><br><br>
+                <br><br><br><br>
                 Dean
             </div>
             <div>
-                <strong>Remarks / Recommendation</strong><br><br><br><br>
+                <br><br><br><br>
                 Pro Vice Chancellor
+            </div>
+            <div>
+                <br><br><br><br>
+                Additional Registrar
+            </div>
+            <div>
+                <br><br><br><br>
+                Registrar
             </div>
         </div>
     </div>

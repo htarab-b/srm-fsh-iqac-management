@@ -1,7 +1,4 @@
-from typing import Any
-from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
-from django.urls import reverse
 from django.views.generic import FormView, ListView
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -44,7 +41,8 @@ class FormFillView(FormView):
         EventDate_To = request.POST.get('EventDate_To')
         Documents = request.POST.get('Documents')
         Type = request.POST.get('Type')
-        if Type == 'Student': Department += " - " + request.POST.get('Class')
+        if FormThrough == 'Head of Department': FormThrough += ", Department of " + Department
+        if Type == 'Student': Department += " - " + request.POST.get('Degree') + " - " + request.POST.get('Year')
         flag = FormDetailsModel.objects.filter(
             Name = Name,
             RegID = ID,

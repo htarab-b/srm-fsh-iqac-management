@@ -94,7 +94,30 @@
             align-items: end;
             overflow: scroll;
         }
+        .copypurpose-button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        .copypurpose-button:hover {
+            background-color: #0056b3;
+        }
     </style>
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Form Purpose copied to clipboard!");
+            }).catch(err => {
+                console.error("Failed to copy: ", err);
+                alert("Failed to copy text. Please try again.");
+            });
+        }
+    </script>
     {% if messages %}
         {% for message in messages %}
             <script>window.alert("{{ message }}")</script>
@@ -102,6 +125,7 @@
     {% endif %}
 </head>
 <body>
+    {% load shorten %}
     <form action="" method="post" class="buttons">
         {% csrf_token %}
         <a class="back-button" href="{% url 'admin' %}">Back</a>
@@ -110,7 +134,7 @@
     <div class="container">
         <div class="header">
             <img src="{% static 'assets/SRM_logo.png' %}" alt="SRM">
-            <div>COLLEGE OF SCIENCE AND HUMANITIES<br>SRM INSTITUTE OF SCIENCE AND TECHNOLOGY<br>FORM-1</div>
+            <div>FACULTY OF SCIENCE AND HUMANITIES<br>SRM INSTITUTE OF SCIENCE AND TECHNOLOGY<br>FORM-1</div>
         </div>
         <div class="content">
             <table>
@@ -119,7 +143,7 @@
                 </tr>
                 <tr>
                     <td style="width: 50%;"><b>From:</b><br>{{ details.Name }}<br>{{ details.RegID }}<br>{{ details.Department }}<br>{{ details.Email }}<br>{{ details.Phone }}</td>
-                    <td style="width: 50%;"><b>To:</b><br>{{ details.LetterTo }}<br>SRMIST</td>
+                    <td style="width: 50%;"><b>To:</b><br>{{ details.LetterTo }}<br>SRMIST<br><br><b>Through:</b><br>{{ details.LetterThrough }}<br>SRMIST</td>
                 </tr>
                 <tr>
                     <td colspan="2"><b>Date: </b>{{ details.Date|date:"d-m-Y" }}</td>
@@ -128,7 +152,8 @@
                     <td colspan="2"><b>Subject: </b>{{ details.Subject }}</td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="height: 300px;"><div style="height: 80%;">Respected {{ details.LetterTo }},<br><br>{{ details.Purpose }}</div><div class="purpose-sign"><b>Additional Documents:</b> <a href="{{ details.AdditionalDocuments }}" target="_blank">{{ details.AdditionalDocuments }}</a></div></td>
+                    <td colspan="2" style="height: 300px;"><div style="height: 80%;">Respected {{ details.LetterTo }}, <button type="button" class="copypurpose-button" onclick="copyToClipboard('{{ details.Purpose|escapejs }}')">Copy Purpose</button>
+                    <br><br>{{ details.Purpose }}</div><div class="purpose-sign"><b>Additional Documents:</b> <a href="{{ details.AdditionalDocuments }}" target="_blank">{{ details.AdditionalDocuments }}</a></div></td>
                 </tr>
             </table>
         </div>

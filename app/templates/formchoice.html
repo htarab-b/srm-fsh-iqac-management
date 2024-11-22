@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
     <style>
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 20%;
+        }
+        .header img {
+            width: 220px;
+        }
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -26,7 +37,7 @@
         }
         .form-container h2 {
             margin-bottom: 40px;
-            font-size: 24px;
+            font-size: 1.4rem;
             text-align: center;
             width: 100%;
         }
@@ -68,8 +79,11 @@
     </style>
 </head>
 <body>
+    <div class="header">
+        <img src="{% static 'assets/SRM_logo.png' %}" alt="SRM">
+    </div>
     <div class="form-container">
-        <h2>Submit Your Details</h2>
+        <h2>SRMIST FSH KTR<br>Events Portal</h2>
         <form action="" method="GET">
             <div class="form-group">
                 <input type="hidden" name="form" value="Staff">
